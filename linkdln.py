@@ -1,59 +1,3 @@
-"""import requests
-
-def fetch_jobs_by_name(bearer_token):
-    # URL for searching jobs on LinkedIn (replace with the actual URL)
-    url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=data%2Bscience&location=&geoId=&trk=public_jobs_jobs-search-bar_search-submit&original_referer=https%3A%2F%2Fwww.linkedin.com%2Fjobs%2Fsearch%3Fkeywords%3D%26location%3DUnited%2520States%26geoId%3D103644278%26f_TPR%3D%26f_JT%3DF%26position%3D1%26pageNum%3D0&start=125'
-
-    # Parameters for the job search API
-    #params = {
-     #   'keywords': job_name,
-      #  'location':location_value
-    #}
-
-    # Headers including the Bearer token
-    headers = {
-        'Authorization': f'Bearer {bearer_token}',
-        'Content-Type': 'application/html'
-    }
-
-    try:
-        # Sending GET request with headers and parameters
-        response = requests.get(url, headers=headers)
-
-        # Checking response status
-        if response.status_code == 200:
-            print("Request successful!")
-            print("Response:")
-            print(response.json())  # Print response body
-        else:
-            print(f"Request failed with status code {response.status_code}")
-            print("Response:")
-            print(response.text)  # Print response body for further inspection
-
-    except Exception as e:
-        print("An error occurred:", e)
-
-# Replace 'YOUR_BEARER_TOKEN' with your actual Bearer token
-bebearer_token = 'AQUlN-nEkFgrAioTvzkLHZkPQ_qyyyBJaV5VL5UbGngBitrKy2Ny0ijZW6hiyi_VSSjvSKpMfrOuIfgRyn_1Lp9EyFaMwWj6rg6ffiuqnXoGRxEeaAyNOCJZU8AdUw5IA1SWIaPNhaBib-NMffUCuFLCk0UgsGt6UYL2hZ4QuKyIJogpPGaSWTo8a-igYLTxZA3X2socD4QhsOsQf3DjycEm4WjksUdhe9txZ_tcZWCMwCZrn78iZlZNeG1lSsi3eE_iFkf8dQ6npCf5QQtvnxV_AXfznvqHl6I8NBpFq6AwgP92PICq2Vtk_teB2Ml7S5oMvOvFYy7oP9xQmz7-I0JpDumrYw'
-
-# Replace 'Software Engineer' with the job name you want to search
-job_name = 'Software Engineer'
-
-# Call the function to fetch jobs by name
-fetch_jobs_by_name(bebearer_token)
-"""
-import sys
-
-"""import streamlit as st
-
-st.error( st.experimental_get_query_params())
-# Set experimental query parameters
-params = {"Login": "True", "param2": "value2"}
-st.experimental_set_query_params(**params)
-
-# Get experimental query parameters
-query_params = st.experimental_get_query_params()
-st.write("Query Parameters:", query_params)"""
 
 import requests
 from bs4 import BeautifulSoup
@@ -66,7 +10,6 @@ def job_fetch_data(b_t,job_name,location_val):
     url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search'
     # Define the bearer token
     bearer_token = b_t
-    #'AQUlN-nEkFgrAioTvzkLHZkPQ_qyyyBJaV5VL5UbGngBitrKy2Ny0ijZW6hiyi_VSSjvSKpMfrOuIfgRyn_1Lp9EyFaMwWj6rg6ffiuqnXoGRxEeaAyNOCJZU8AdUw5IA1SWIaPNhaBib-NMffUCuFLCk0UgsGt6UYL2hZ4QuKyIJogpPGaSWTo8a-igYLTxZA3X2socD4QhsOsQf3DjycEm4WjksUdhe9txZ_tcZWCMwCZrn78iZlZNeG1lSsi3eE_iFkf8dQ6npCf5QQtvnxV_AXfznvqHl6I8NBpFq6AwgP92PICq2Vtk_teB2Ml7S5oMvOvFYy7oP9xQmz7-I0JpDumrYw'
     # Define the headers with the bearer token
     headers = {
         'Authorization': f'Bearer {bearer_token}'

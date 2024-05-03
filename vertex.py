@@ -20,7 +20,6 @@ import google.generativeai as genai
 
 def gen_promt(ver_key,promt_text):
   genai.configure(api_key=ver_key)
-  #AIzaSyAnW5TaAl2WG2QmtsEiKifTtnpAHKiiIVI
 
   # Set up the model
   generation_config = {
