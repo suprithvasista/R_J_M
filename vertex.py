@@ -21,6 +21,7 @@ import google.generativeai as genai
 def gen_promt(ver_key,promt_text):
   genai.configure(api_key=ver_key)
 
+
   # Set up the model
   generation_config = {
     "temperature": 1,
