@@ -131,17 +131,39 @@ def home_page():
                 set_session_state('Resume_cv', "")
                 content=None
                 st.warning("No file.")
-
-            final_text=str(input_promt) +" "+str(content)+" this is the job description "+str(st.session_state.Job_description[selected_key][1]) + " " + str(manual_desc)
+            if selected_key =="NONE":
+                LIST_VALUE=0
+            else:
+                LIST_VALUE=1
+            final_text=str(input_promt) +" "+str(content)+" this is the job description "+str(st.session_state.Job_description[selected_key][LIST_VALUE]) + " " + str(manual_desc)
             #st.write(str(final_text.replace('Sho more','')))
             if input_promt and str(content) and api_vertex and (manual_desc or st.session_state.Job_description !=""):
                 file_down=gen_promt(api_vertex,final_text)
-                st.write(file_down)
+
                 set_session_state('Feed_back',file_down)
-                create_pdf(file_down, 'Feedback_1.pdf')
+                final_pdf=create_pdf(file_down)
+                set_session_state('pdf_data',final_pdf)
             else:
                 st.warning("Not all columns are filled")
-
+        #try:
+    if 'pdf_data' not in st.session_state:
+        set_session_state('pdf_data',"")
+        values_dis=True
+    elif st.session_state.pdf_data=="":
+        #print('fine')
+        values_dis=True
+    else:
+        values_dis=False
+    if st.download_button(label="Dowload pdf", disabled=values_dis,data=st.session_state.pdf_data, file_name="Feedback.pdf",
+                          mime='applcation/pdf'):
+        st.success("Downloaded file.")
+    if st.session_state.pdf_data !="":
+        st.write(st.session_state.Feed_back)
+    else:
+        print('Normal run')
+"""        except Exception as e:
+            print("Error")
+            st.error(e)"""
             #st.warning(final_text)
 """    if st.sidebar.button("Logout:"):
         #st.session_state.login_screen='Required'
