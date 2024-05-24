@@ -8,4 +8,4 @@ def set_session_state(page_name, values):
     st.session_state[page_name]=values
 
 def re_run():
-    st.experimental_rerun()
+    st.rerun()

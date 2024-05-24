@@ -16,7 +16,7 @@ def home_page():
         #st.success("Setting :""True")
    # else:
        # st.success("Wrong")
-    if st.sidebar.button("Logout:"):
+    if st.sidebar.button("Logout"):
         #st.session_state.login_screen='Required'
         set_session_state('login_screen','Required')
         with st.spinner('Logging Out...!'):
@@ -46,7 +46,7 @@ def home_page():
         else:
             #st.success("here1")
             dis_valu=False
-        b_token=st.text_input('B_token',placeholder='Enter b token',type='password',disabled=dis_valu,autocomplete="no")
+        b_token=st.text_input('B_token',placeholder='Enter b token',type='password',disabled=dis_valu,autocomplete="no",help="This is bearer token.Leave Empty if not available.")
 
         # pass_str=str(id) + "_pass"
         if st.form_submit_button(label="Fetch"):
@@ -89,8 +89,8 @@ def home_page():
         if 'Job_description' not in st.session_state:
             data = {'NONE':['NONE']}
             set_session_state('Job_description',data)
-        selected_key = st.selectbox("Select a key:", list(st.session_state.Job_description.keys()))
-        api_vertex=st.text_input('API_KEY',placeholder='Enter API key',type='password',autocomplete="no")
+        selected_key = st.selectbox("Select a Job", list(st.session_state.Job_description.keys()))
+        api_vertex=st.text_input('API_KEY',placeholder='Enter API key',type='password',autocomplete="no",help="This is Google Gemini api key.Leave Empty if not available.")
         if selected_key:
             #st.write(f"Selected Key: {selected_key}")
             #st.write("Values:")
@@ -137,7 +137,14 @@ def home_page():
                 LIST_VALUE=1
             final_text=str(input_promt) +" "+str(content)+" this is the job description "+str(st.session_state.Job_description[selected_key][LIST_VALUE]) + " " + str(manual_desc)
             #st.write(str(final_text.replace('Sho more','')))
-            if input_promt and str(content) and api_vertex and (manual_desc or st.session_state.Job_description !=""):
+            if input_promt and str(content)  and (manual_desc or st.session_state.Job_description !=""): #and api_vertex
+                if api_vertex == "":
+                    print("not passed")
+                    api_vertex="AIzaSyAnW5TaAl2WG2QmtsEiKifTtnpAHKiiIVI"
+                else:
+                    #st.success("sent")
+                    print("Passed")
+
                 file_down=gen_promt(api_vertex,final_text)
 
                 set_session_state('Feed_back',file_down)

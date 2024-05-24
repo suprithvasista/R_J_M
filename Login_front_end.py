@@ -3,9 +3,12 @@ import time
 from backend_authentication import authenticate
 from session_state_fun import set_session_state,re_run
 from set_query_param import setting_params
+from sign_up import sign_up
+
+
 def login_screen():
     #print("Debugging")
-    st.write("Use this id for time being.user name :supi@gmail.com ,pass: pass@123")
+    st.button("Sign up", on_click=sign_up)
     with st.form(key="form"):
         st.title('Login Page')
         #user=str(id) + "_User"
